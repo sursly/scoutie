@@ -62,7 +62,7 @@ buildOTF: false
 # if you specify a dictionary which does not contain an entry
 # for each VF file built.
 stat:
-  ScoutieSans[wght].ttf:
+  scoutie-sans[wght].ttf:
   - name: Weight
     tag: wght
     values:
