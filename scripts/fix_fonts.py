@@ -1,75 +1,17 @@
 #!/usr/bin/env python3
 """
 Post-build fixes for Google Fonts compliance.
-Fixes issues that can't be handled in config.yaml or the glyphs source:
-  - usWinAscent/Descent must cover the full glyph bounding box
+Fixes issues that can't be set in the Glyphs source or config.yaml:
   - nbsp advance width must match space
   - Copyright string format (removes "All rights reserved." and stray © placement)
+  - Inject identity avar table (fontmake skips it when mappings are linear)
+
+Vertical metrics and win metrics are set via Custom Parameters in the Glyphs
+source files directly — no post-processing needed for those.
 """
 import re
 import sys
 from fontTools.ttLib import TTFont
-
-
-def get_glyph_extents(tt):
-    ymax, ymin = 0, 0
-    glyf = tt.get("glyf")
-    if not glyf:
-        return ymax, ymin
-    for name in tt.getGlyphOrder():
-        try:
-            g = glyf[name]
-            if hasattr(g, "yMax") and g.yMax is not None:
-                ymax = max(ymax, g.yMax)
-            if hasattr(g, "yMin") and g.yMin is not None:
-                ymin = min(ymin, g.yMin)
-        except Exception:
-            pass
-    return ymax, ymin
-
-
-def fix_win_metrics(tt):
-    ymax, ymin = get_glyph_extents(tt)
-    os2 = tt["OS/2"]
-    changed = False
-    if os2.usWinAscent != ymax:
-        print(f"  usWinAscent: {os2.usWinAscent} → {ymax}")
-        os2.usWinAscent = ymax
-        changed = True
-    if os2.usWinDescent != abs(ymin):
-        print(f"  usWinDescent: {os2.usWinDescent} → {abs(ymin)}")
-        os2.usWinDescent = abs(ymin)
-        changed = True
-    return changed
-
-
-def fix_vertical_metrics(tt):
-    # GF requires hhea.ascender + abs(hhea.descender) + lineGap >= 2400.
-    # Align hhea and sTypo to the win metrics (which already cover actual glyph extents).
-    os2 = tt["OS/2"]
-    hhea = tt["hhea"]
-    changed = False
-    target_asc = os2.usWinAscent
-    target_desc = -os2.usWinDescent
-    for attr, current, target in [
-        ("sTypoAscender", os2.sTypoAscender, target_asc),
-        ("sTypoDescender", os2.sTypoDescender, target_desc),
-        ("sTypoLineGap", os2.sTypoLineGap, 0),
-    ]:
-        if getattr(os2, attr) != target:
-            print(f"  OS/2.{attr}: {getattr(os2, attr)} → {target}")
-            setattr(os2, attr, target)
-            changed = True
-    for attr, current, target in [
-        ("ascent", hhea.ascent, target_asc),
-        ("descent", hhea.descent, target_desc),
-        ("lineGap", hhea.lineGap, 0),
-    ]:
-        if getattr(hhea, attr) != target:
-            print(f"  hhea.{attr}: {getattr(hhea, attr)} → {target}")
-            setattr(hhea, attr, target)
-            changed = True
-    return changed
 
 
 def fix_nbsp_width(tt):
@@ -84,6 +26,27 @@ def fix_nbsp_width(tt):
         return False
     print(f"  nbsp width: {hmtx[nbsp_gn][0]} → {space_width}")
     hmtx[nbsp_gn] = (space_width, hmtx[nbsp_gn][1])
+    return True
+
+
+def add_avar_table(tt):
+    # fontmake skips generating avar when mappings are linear/identity.
+    # Inject a minimal identity avar so the mandatory_avar_table check passes.
+    if "avar" in tt:
+        return False
+    from fontTools.ttLib import newTable
+    avar = newTable("avar")
+    avar.version = (1, 0)
+    # Build identity segment for each axis: {-1.0: -1.0, 0.0: 0.0, 1.0: 1.0}
+    fvar = tt.get("fvar")
+    if not fvar:
+        return False
+    avar.segments = {
+        axis.axisTag: {-1.0: -1.0, 0.0: 0.0, 1.0: 1.0}
+        for axis in fvar.axes
+    }
+    tt["avar"] = avar
+    print(f"  avar: added identity table for axes: {list(avar.segments.keys())}")
     return True
 
 
@@ -115,10 +78,9 @@ def fix_font(path):
     print(f"Processing {path}")
     tt = TTFont(path)
     any_changed = False
-    any_changed |= fix_win_metrics(tt)
-    any_changed |= fix_vertical_metrics(tt)
     any_changed |= fix_nbsp_width(tt)
     any_changed |= fix_copyright(tt)
+    any_changed |= add_avar_table(tt)
     if any_changed:
         tt.save(path)
         print(f"  Saved.")

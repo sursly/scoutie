@@ -25,8 +25,10 @@ build.stamp: venv sources/config.yaml $(SOURCES)
 	rm -rf fonts
 	(for config in sources/config*.yaml; do . venv/bin/activate; gftools builder $$config; done) && \
 	. venv/bin/activate; find fonts -name "*.ttf" | xargs python3 scripts/fix_fonts.py && \
-	{ [ -f "fonts/variable/scoutie-sans[wght].ttf" ] && mv "fonts/variable/scoutie-sans[wght].ttf" "fonts/variable/ScoutieSans[wght].ttf" || true; } && \
-	{ [ -f "fonts/webfonts/scoutie-sans[wght].woff2" ] && mv "fonts/webfonts/scoutie-sans[wght].woff2" "fonts/webfonts/ScoutieSans[wght].woff2" || true; } && \
+	{ [ -f "fonts/variable/Scoutie-Sans[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans[wght].ttf" "fonts/variable/ScoutieSans[wght].ttf" || true; } && \
+	{ [ -f "fonts/variable/Scoutie-Sans-Italic[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans-Italic[wght].ttf" "fonts/variable/ScoutieSans-Italic[wght].ttf" || true; } && \
+	{ [ -f "fonts/webfonts/Scoutie-Sans[wght].woff2" ] && mv "fonts/webfonts/Scoutie-Sans[wght].woff2" "fonts/webfonts/ScoutieSans[wght].woff2" || true; } && \
+	{ [ -f "fonts/webfonts/Scoutie-Sans-Italic[wght].woff2" ] && mv "fonts/webfonts/Scoutie-Sans-Italic[wght].woff2" "fonts/webfonts/ScoutieSans-Italic[wght].woff2" || true; } && \
 	touch build.stamp
 
 venv/touchfile: requirements.txt
