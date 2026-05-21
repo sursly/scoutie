@@ -31,7 +31,6 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install ttfautohint libcairo2-dev python3-cairo-dev pkg-config python3-dev
-        sudo snap install yq
     - uses: actions/cache@v5
       with:
         path: ./venv/
