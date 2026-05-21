@@ -2,47 +2,10 @@
 .appVersion = "3525";
 .formatVersion = 3;
 DisplayStrings = (
-"Help Scout brings context, collaboration, and ATIUANA inside the flow of support, so your team can make fast, exceptional service the standard.
-fastidiously
-theatre
-OIF",
-"HELP SCOUT BRINGS CONTEXT, COLLABORATION, AND AI INSIDE THE FLOW OF SUPPORT, SO YOUR TEAM CAN MAKE FAST, EXCEPTIONAL SERTVICE THE STANDARD.'T‘’T
-0123456789
-DEFINITELYAY
-AISTSTSTSmoneyj
-ty
-34321",
-"Beacon
-Inbox
-Company management
-Blog Mobile mobile
-Snooze
-CSollaboration
-Context
-Scoutie Sansa
-Saashs
-Educationmu
-Knowledge Base
-Messages
-ViaAaoaoa
-ttotototooo
-New Times Roman
-super nice.
-Water The Seed
-AaBaCaDa",
-fantastic,
-"ExtraLighte
-Light
-Regular
-Medium
-SemiBold
-Bold
-ExtraBold
-Exactly Medium
-Middle AI 
-agents intelligence
-support meEHhOossage.",
-"◌"
+"CALRITY WHERE
+IT COUNTS
+Geographic",
+agagbgbcgcgdgdgegegefgfgfghghgigigjgjgkgkglglglgmgmgngngogogpgpgqgqgrgrgsgsgtgtgugugvgvgwgwgxgxgygygzgz
 );
 axes = (
 {
@@ -20378,7 +20341,7 @@ color = 7;
 glyphname = g;
 kernLeft = g;
 kernRight = g;
-lastChange = "2026-05-19 19:27:49 +0000";
+lastChange = "2026-05-20 19:48:56 +0000";
 layers = (
 {
 anchors = (
@@ -26680,7 +26643,7 @@ color = 7;
 glyphname = s;
 kernLeft = s;
 kernRight = s;
-lastChange = "2026-05-18 23:10:12 +0000";
+lastChange = "2026-05-20 19:47:04 +0000";
 layers = (
 {
 anchors = (
@@ -27377,7 +27340,7 @@ color = 7;
 glyphname = t;
 kernLeft = t;
 kernRight = t;
-lastChange = "2026-05-19 14:58:47 +0000";
+lastChange = "2026-05-20 19:55:54 +0000";
 layers = (
 {
 anchors = (
@@ -27403,15 +27366,15 @@ shapes = (
 {
 closed = 1;
 nodes = (
-(517,-16,o),
-(574,8,o),
+(497,-16,o),
+(559,2,o),
 (595,16,c),
 (595,106,l),
-(566,93,o),
-(506,74,o),
-(454,74,cs),
-(387,74,o),
-(287,81,o),
+(551,90,o),
+(486,74,o),
+(434,74,cs),
+(367,74,o),
+(291,101,o),
 (329,319,cs),
 (438,940,l),
 (710,940,l),
@@ -27426,7 +27389,7 @@ nodes = (
 (221,307,ls),
 (169,8,o),
 (347,-16,o),
-(445,-16,cs)
+(435,-16,cs)
 );
 }
 );
@@ -27784,7 +27747,7 @@ color = 7;
 glyphname = u;
 kernLeft = n;
 kernRight = l;
-lastChange = "2026-05-19 14:59:00 +0000";
+lastChange = "2026-05-20 19:48:21 +0000";
 layers = (
 {
 anchors = (
@@ -35695,7 +35658,7 @@ source = nine;
 glyphname = space;
 kernLeft = space;
 kernRight = space;
-lastChange = "2026-05-11 14:38:34 +0000";
+lastChange = "2026-05-20 19:19:49 +0000";
 layers = (
 {
 layerId = "64A6F357-C1F1-474D-9483-80AB2A11AA61";
@@ -50851,7 +50814,7 @@ kerningLTR = {
 "@MMK_R_n" = -100;
 "@MMK_R_o" = -146;
 "@MMK_R_period" = -150;
-"@MMK_R_space" = -90;
+"@MMK_R_space" = -40;
 "@MMK_R_t" = -100;
 "@MMK_R_u" = -100;
 "@MMK_R_v" = -80;
@@ -50911,8 +50874,9 @@ kerningLTR = {
 };
 "@MMK_L_g" = {
 "@MMK_R_h" = -30;
-"@MMK_R_n" = -30;
+"@MMK_R_n" = -60;
 "@MMK_R_o" = -40;
+"@MMK_R_s" = -80;
 "@MMK_R_t" = -30;
 "@MMK_R_v" = -50;
 "@MMK_R_y" = -40;
@@ -51031,6 +50995,7 @@ kerningLTR = {
 "@MMK_L_s" = {
 "@MMK_R_a" = -65;
 "@MMK_R_f" = -14;
+"@MMK_R_g" = -40;
 "@MMK_R_h" = -9;
 "@MMK_R_n" = -9;
 "@MMK_R_o" = -34;
@@ -51049,7 +51014,7 @@ kerningLTR = {
 "@MMK_R_A" = -50;
 "@MMK_R_J" = -40;
 "@MMK_R_T" = -40;
-"@MMK_R_V" = -90;
+"@MMK_R_V" = -40;
 "@MMK_R_Y" = -90;
 "@MMK_R_o" = 2;
 };
@@ -51334,7 +51299,7 @@ a = -50;
 "@MMK_R_n" = -100;
 "@MMK_R_o" = -213;
 "@MMK_R_period" = -150;
-"@MMK_R_space" = -90;
+"@MMK_R_space" = -40;
 "@MMK_R_t" = -100;
 "@MMK_R_u" = -100;
 "@MMK_R_v" = -80;
@@ -51394,9 +51359,9 @@ a = -50;
 };
 "@MMK_L_g" = {
 "@MMK_R_h" = -15;
-"@MMK_R_n" = -30;
+"@MMK_R_n" = -60;
 "@MMK_R_o" = -60;
-"@MMK_R_s" = -30;
+"@MMK_R_s" = -80;
 "@MMK_R_t" = -30;
 "@MMK_R_v" = -60;
 "@MMK_R_y" = -40;
@@ -51513,6 +51478,7 @@ a = -50;
 "@MMK_L_s" = {
 "@MMK_R_a" = -15;
 "@MMK_R_f" = -3;
+"@MMK_R_g" = -40;
 "@MMK_R_h" = -15;
 "@MMK_R_n" = -15;
 "@MMK_R_o" = -20;
@@ -51531,7 +51497,7 @@ a = -50;
 "@MMK_R_A" = -50;
 "@MMK_R_J" = -40;
 "@MMK_R_T" = -40;
-"@MMK_R_V" = -90;
+"@MMK_R_V" = -40;
 "@MMK_R_Y" = -90;
 "@MMK_R_o" = 8;
 };

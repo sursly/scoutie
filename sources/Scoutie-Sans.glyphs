@@ -2,73 +2,8 @@
 .appVersion = "3525";
 .formatVersion = 3;
 DisplayStrings = (
-"Help Scout brings context, collaboration, and ATIUANA inside the flow of support, so your team can make fast, exceptional service the standard.
-fastidiously
-theatre
-OIF",
-"HELP SCOUT BRINGS CONTEXT, COLLABORATION, AND AI INSIDE THE FLOW OF SUPPORT, SO YOUR TEAM CAN MAKE FAST, EXCEPTIONAL SERTVICE THE STANDARD.'T‘’T
-0123456789
-DEFINITELYAY
-AISTSTSTSmoneyj
-ty
-34321",
-"Beacon
-Inbox
-Company management
-Blog Mobile mobile
-Snooze
-CSollaboration
-Context
-Scoutie Sansa
-Saashs
-Educationmu
-Knowledge Base
-Messages
-ViaAaoaoa
-ttotototooo
-New Times Roman
-super nice.
-Water The Seed
-AaBaCaDa",
-"the quick brown fox jumps
-over the lazy dog!
-active
-Active.",
-"Help Scout",
-"ExtraLighte
-Light
-Regular
-Medium
-SemiBold
-Bold
-ExtraBold
-Exactly Medium
-Middle AI 
-agents intelligence
-support meEHhOossage.",
-"&______
-/underscore.ss02/underscore.ss02/underscore.ss02/underscore.ss02/underscore.ss02",
-"G&R
-Scoutie
-Sans
-Guerrila Tacticsl4123456789ILi2",
-H,
-inger,
-"Sansonono
-ononon
-ohohoh
-sonar 
-sonos",
-"ultimate frisbee
-ULTIMATE FRISBEE
-Fintech",
-"Ị/Idotbelow.ss03 ̣ıị",
-"iı̇ị",
-"ı",
-"◌",
-"/lineseparator",
-"/lineseparator/paragraphseparator",
-"̵"
+"agagbgbcgcgdgdgegegefgfgfghghgigigjgjgkgkglglglgmgmgngngogogpgpgqgqgrgrgsgsgtagtgugugvgvgwgwgxgxgygygzgz
+guidesg"
 );
 axes = (
 {
@@ -20411,7 +20346,7 @@ color = 7;
 glyphname = g;
 kernLeft = g;
 kernRight = g;
-lastChange = "2026-05-20 14:17:47 +0000";
+lastChange = "2026-05-20 19:48:47 +0000";
 layers = (
 {
 anchors = (
@@ -26698,7 +26633,7 @@ color = 7;
 glyphname = s;
 kernLeft = s;
 kernRight = s;
-lastChange = "2026-05-20 14:11:26 +0000";
+lastChange = "2026-05-20 19:46:55 +0000";
 layers = (
 {
 anchors = (
@@ -27415,7 +27350,7 @@ color = 7;
 glyphname = t;
 kernLeft = t;
 kernRight = t;
-lastChange = "2026-05-18 16:09:25 +0000";
+lastChange = "2026-05-20 19:55:17 +0000";
 layers = (
 {
 anchors = (
@@ -27445,11 +27380,11 @@ nodes = (
 (663,8,o),
 (683,16,c),
 (658,106,l),
-(631,93,o),
-(591,74,o),
-(539,74,cs),
-(472,74,o),
-(363,81,o),
+(620,91,o),
+(571,74,o),
+(519,74,cs),
+(452,74,o),
+(363,101,o),
 (363,319,cs),
 (363,940,l),
 (635,940,l),
@@ -27822,7 +27757,7 @@ color = 7;
 glyphname = u;
 kernLeft = n;
 kernRight = l;
-lastChange = "2026-05-13 17:19:27 +0000";
+lastChange = "2026-05-20 19:48:15 +0000";
 layers = (
 {
 anchors = (
@@ -29045,7 +28980,7 @@ color = 7;
 glyphname = v;
 kernLeft = v;
 kernRight = v;
-lastChange = "2026-05-20 14:13:34 +0000";
+lastChange = "2026-05-20 19:47:55 +0000";
 layers = (
 {
 anchors = (
@@ -35733,7 +35668,7 @@ source = nine;
 glyphname = space;
 kernLeft = space;
 kernRight = space;
-lastChange = "2026-05-11 14:38:34 +0000";
+lastChange = "2026-05-20 19:19:39 +0000";
 layers = (
 {
 layerId = "64A6F357-C1F1-474D-9483-80AB2A11AA61";
@@ -50879,7 +50814,7 @@ kerningLTR = {
 "@MMK_R_n" = -100;
 "@MMK_R_o" = -146;
 "@MMK_R_period" = -150;
-"@MMK_R_space" = -90;
+"@MMK_R_space" = -40;
 "@MMK_R_t" = -100;
 "@MMK_R_u" = -100;
 "@MMK_R_v" = -80;
@@ -50939,8 +50874,9 @@ kerningLTR = {
 };
 "@MMK_L_g" = {
 "@MMK_R_h" = -30;
-"@MMK_R_n" = -30;
+"@MMK_R_n" = -60;
 "@MMK_R_o" = -40;
+"@MMK_R_s" = -80;
 "@MMK_R_t" = -30;
 "@MMK_R_v" = -50;
 "@MMK_R_y" = -40;
@@ -51059,6 +50995,7 @@ kerningLTR = {
 "@MMK_L_s" = {
 "@MMK_R_a" = -65;
 "@MMK_R_f" = -14;
+"@MMK_R_g" = -40;
 "@MMK_R_h" = -9;
 "@MMK_R_n" = -9;
 "@MMK_R_o" = -34;
@@ -51077,7 +51014,7 @@ kerningLTR = {
 "@MMK_R_A" = -50;
 "@MMK_R_J" = -40;
 "@MMK_R_T" = -40;
-"@MMK_R_V" = -90;
+"@MMK_R_V" = -40;
 "@MMK_R_Y" = -90;
 "@MMK_R_o" = 2;
 };
@@ -51362,7 +51299,7 @@ a = -50;
 "@MMK_R_n" = -100;
 "@MMK_R_o" = -213;
 "@MMK_R_period" = -150;
-"@MMK_R_space" = -90;
+"@MMK_R_space" = -40;
 "@MMK_R_t" = -100;
 "@MMK_R_u" = -100;
 "@MMK_R_v" = -80;
@@ -51422,9 +51359,9 @@ a = -50;
 };
 "@MMK_L_g" = {
 "@MMK_R_h" = -15;
-"@MMK_R_n" = -30;
+"@MMK_R_n" = -60;
 "@MMK_R_o" = -60;
-"@MMK_R_s" = -30;
+"@MMK_R_s" = -80;
 "@MMK_R_t" = -30;
 "@MMK_R_v" = -60;
 "@MMK_R_y" = -40;
@@ -51541,6 +51478,7 @@ a = -50;
 "@MMK_L_s" = {
 "@MMK_R_a" = -15;
 "@MMK_R_f" = -3;
+"@MMK_R_g" = -40;
 "@MMK_R_h" = -15;
 "@MMK_R_n" = -15;
 "@MMK_R_o" = -20;
@@ -51559,7 +51497,7 @@ a = -50;
 "@MMK_R_A" = -50;
 "@MMK_R_J" = -40;
 "@MMK_R_T" = -40;
-"@MMK_R_V" = -90;
+"@MMK_R_V" = -40;
 "@MMK_R_Y" = -90;
 "@MMK_R_o" = 8;
 };
