@@ -29,6 +29,10 @@ build.stamp: venv sources/config.yaml $(SOURCES)
 	{ [ -f "fonts/variable/Scoutie-Sans-Italic[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans-Italic[wght].ttf" "fonts/variable/ScoutieSans-Italic[wght].ttf" || true; } && \
 	{ [ -f "fonts/webfonts/Scoutie-Sans[wght].woff2" ] && mv "fonts/webfonts/Scoutie-Sans[wght].woff2" "fonts/webfonts/ScoutieSans[wght].woff2" || true; } && \
 	{ [ -f "fonts/webfonts/Scoutie-Sans-Italic[wght].woff2" ] && mv "fonts/webfonts/Scoutie-Sans-Italic[wght].woff2" "fonts/webfonts/ScoutieSans-Italic[wght].woff2" || true; } && \
+	for vf in fonts/variable/*.ttf; do \
+		[ -f "$$vf" ] || continue; \
+		python3 -c "from fontTools.ttLib import TTFont; import sys; p=sys.argv[1]; f=TTFont(p); f.flavor='woff'; f.save(p[:-4]+'.woff'); f=TTFont(p); f.flavor='woff2'; f.save(p[:-4]+'.woff2')" "$$vf"; \
+	done && \
 	touch build.stamp
 
 venv/touchfile: requirements.txt

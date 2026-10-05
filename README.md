@@ -37,6 +37,14 @@ The proof files and QA test results are available via GitHub Pages at [sursly.gi
 
 ## Changelog
 
+**5 October 2026. Version 1.002**
+- Fix slashed zero not applying to tabular figures (`zero` + `tnum`) ([#1](https://github.com/sursly/scoutie/issues/1)).
+- Fix italic diacritic alignment: Eogonek, AEacute, Bhook, Dhook and Tcedilla now follow anchors ([#2](https://github.com/sursly/scoutie/issues/2)).
+- Minor kerning and outline refinements.
+
+**1 July 2026. Version 1.001**
+- First italics pass, weight fine-tuning for the Google Fonts spec, and finalized OFL copyright.
+
 **19 May 2026. Version 1.000**
 - Initial release. Variable fonts with wght (200–800) and matching italic.
 
