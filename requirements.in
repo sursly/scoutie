@@ -4,3 +4,5 @@ drawbot-skia>=0.5.0
 sh>=2.0.6
 bumpfontversion>=0.4.1
 diffenator2>=0.3.8
+# diffenator2 still imports pkg_resources, which setuptools 82 removed
+setuptools<82

@@ -462,3 +462,7 @@ zopfli==0.4.1
 # The following packages are considered to be unsafe in a requirements file:
 # pip
 # setuptools
+
+# Pinned manually (pip-compile omits setuptools): diffenator2 still
+# imports pkg_resources, which setuptools 82 removed.
+setuptools<82
