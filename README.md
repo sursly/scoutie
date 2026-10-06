@@ -37,6 +37,11 @@ The proof files and QA test results are available via GitHub Pages at [sursly.gi
 
 ## Changelog
 
+**6 October 2026. Version 1.003**
+- Fix contour order mismatches in italic diaeresis glyphs and marks (adieresis, udieresis, dieresiscomb, dieresisbelowcomb and others) that caused interpolation issues ([google/fonts#11078](https://github.com/google/fonts/pull/11078)).
+- E composites now use automatic component alignment, so their widths match the base E.
+- Synced spacing to metrics keys for cent, currency, less, greater, percent, slashed zero and J.ss06.
+
 **5 October 2026. Version 1.002**
 - Fix slashed zero not applying to tabular figures (`zero` + `tnum`) ([#1](https://github.com/sursly/scoutie/issues/1)).
 - Fix italic diacritic alignment: Eogonek, AEacute, Bhook, Dhook and Tcedilla now follow anchors ([#2](https://github.com/sursly/scoutie/issues/2)).
