@@ -41,6 +41,7 @@ The proof files and QA test results are available via GitHub Pages at [sursly.gi
 - Added g–g kerning.
 - Raised accent marks on o composites (oacute, ocircumflex, odieresis, otilde and others) and the top anchor of eng.
 - Refined the dots of ij and hdotbelow and the outlines of ezhcaron.
+- Moved the gstroke bottom anchor and the hbrevebelow breve to line up with it.
 - Synced E composite widths to the base E, including Etilde in the italic.
 
 **6 October 2026. Version 1.003**
