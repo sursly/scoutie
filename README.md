@@ -37,6 +37,12 @@ The proof files and QA test results are available via GitHub Pages at [sursly.gi
 
 ## Changelog
 
+**17 November 2026. Version 1.004**
+- Added g–g kerning.
+- Raised accent marks on o composites (oacute, ocircumflex, odieresis, otilde and others) and the top anchor of eng.
+- Refined the dots of ij and hdotbelow and the outlines of ezhcaron.
+- Synced E composite widths to the base E, including Etilde in the italic.
+
 **6 October 2026. Version 1.003**
 - Fix contour order mismatches in italic diaeresis glyphs and marks (adieresis, udieresis, dieresiscomb, dieresisbelowcomb and others) that caused interpolation issues ([google/fonts#11078](https://github.com/google/fonts/pull/11078)).
 - E composites now use automatic component alignment, so their widths match the base E.
