@@ -14,7 +14,7 @@
 
 Scoutie Sans was created to balance the utility of a compact UI typeface for Help Scout with hints of a display grotesk for marketing. The result is a versatile sans-serif that works equally well at small interface sizes and large headline settings.
 
-The family spans a weight range from ExtraLight to ExtraBold (200–800), with matching italics, offered as variable fonts.
+The family spans a weight range from ExtraLight to ExtraBold (200–800), including a Book weight at 350, with matching italics, offered as variable fonts.
 
 ![Sample Image](documentation/image1.png)
 ![Sample Image](documentation/image2.png)
@@ -36,6 +36,13 @@ If you want to build fonts manually on your own computer:
 The proof files and QA test results are available via GitHub Pages at [sursly.github.io/scoutie](https://sursly.github.io/scoutie).
 
 ## Changelog
+
+**19 November 2026. Version 1.005**
+- Added a Book weight (350) with a matching Book Italic, as static fonts and as a named instance in both variable fonts.
+- Sharper text at small sizes on low-resolution screens: the static fonts are autohinted so the x-height keeps its designed proportions, and horizontal strokes snap to whole pixels on Windows.
+- Webfonts are now built from the final hinted TTFs, so the static woff2 files include the no-break space and copyright fixes, and the variable woff2 files include the avar table.
+- Added extreme points to the tails of Q and ɖ so they render cleanly at small sizes.
+- Aligned the t crossbar to the x-height, including its accented forms.
 
 **17 November 2026. Version 1.004**
 - Added g–g kerning.

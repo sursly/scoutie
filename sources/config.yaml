@@ -8,6 +8,12 @@ familyName: "Scoutie Sans"
 
 cleanUp: true
 
+# Static TTFs are autohinted and webfonts are made by the Makefile after
+# scripts/fix_fonts.py runs, so ttfautohint options can be set (TTFA_ARGS) and
+# the webfonts include the post-build fixes.
+autohintTTF: false
+buildWebfont: false
+
 stat:
   Scoutie-Sans[wght].ttf:
   - name: Weight
@@ -17,6 +23,8 @@ stat:
       value: 200
     - name: Light
       value: 300
+    - name: Book
+      value: 350
     - name: Regular
       value: 400
       linkedValue: 700
@@ -44,6 +52,8 @@ stat:
       value: 200
     - name: Light
       value: 300
+    - name: Book
+      value: 350
     - name: Regular
       value: 400
       linkedValue: 700
