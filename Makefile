@@ -3,6 +3,16 @@ FAMILY=$(shell python3 scripts/read-config.py --family )
 DRAWBOT_SCRIPTS=$(shell ls documentation/*.py)
 DRAWBOT_OUTPUT=$(shell ls documentation/*.py | sed 's/\.py/.png/g')
 
+# Options for ttfautohint on the static TTFs (same flags as the ttfautohint CLI).
+#   -x 0  keep x-height at its natural pixel rounding (the default, -x 14, rounds
+#         it up at 6-14ppem, stretching text 11-25% taller than designed)
+#   -a qss  stem widths: quantized in grayscale, strong (snapped to whole pixels)
+#         in GDI and DirectWrite ClearType. DirectWrite (Windows browsers) only
+#         uses vertical hints, so this makes crossbars and horizontal strokes
+#         land on single pixel rows instead of a dark row plus a faint one.
+# Override per build (-B forces a rebuild): make -B build TTFA_ARGS="-x 0 -a qsq"
+TTFA_ARGS ?= -x 0 -a qss
+
 help:
 	@echo "###"
 	@echo "# Build targets for $(FAMILY)"
@@ -11,6 +21,7 @@ help:
 	@echo "  make build:  Builds the fonts and places them in the fonts/ directory"
 	@echo "  make test:   Tests the fonts with fontspector"
 	@echo "  make proof:  Creates HTML proof documents in the proof/ directory"
+	@echo "  make hinting-test:  Small-size static vs variable test page in out/hinting-test/"
 	@echo "  make images: Creates PNG specimen images in the documentation/ directory"
 	@echo
 
@@ -21,18 +32,14 @@ venv: venv/touchfile
 customize: venv
 	. venv/bin/activate; python3 scripts/customize.py
 
-build.stamp: venv sources/config.yaml $(SOURCES)
+build.stamp: venv sources/config.yaml $(SOURCES) scripts/fix_fonts.py scripts/autohint_fonts.py scripts/make_webfonts.py
 	rm -rf fonts
 	(for config in sources/config*.yaml; do . venv/bin/activate; gftools builder $$config; done) && \
 	. venv/bin/activate; find fonts -name "*.ttf" | xargs python3 scripts/fix_fonts.py && \
 	{ [ -f "fonts/variable/Scoutie-Sans[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans[wght].ttf" "fonts/variable/ScoutieSans[wght].ttf" || true; } && \
 	{ [ -f "fonts/variable/Scoutie-Sans-Italic[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans-Italic[wght].ttf" "fonts/variable/ScoutieSans-Italic[wght].ttf" || true; } && \
-	{ [ -f "fonts/webfonts/Scoutie-Sans[wght].woff2" ] && mv "fonts/webfonts/Scoutie-Sans[wght].woff2" "fonts/webfonts/ScoutieSans[wght].woff2" || true; } && \
-	{ [ -f "fonts/webfonts/Scoutie-Sans-Italic[wght].woff2" ] && mv "fonts/webfonts/Scoutie-Sans-Italic[wght].woff2" "fonts/webfonts/ScoutieSans-Italic[wght].woff2" || true; } && \
-	for vf in fonts/variable/*.ttf; do \
-		[ -f "$$vf" ] || continue; \
-		python3 -c "from fontTools.ttLib import TTFont; import sys; p=sys.argv[1]; f=TTFont(p); f.flavor='woff'; f.save(p[:-4]+'.woff'); f=TTFont(p); f.flavor='woff2'; f.save(p[:-4]+'.woff2')" "$$vf"; \
-	done && \
+	python3 scripts/autohint_fonts.py --args "$(TTFA_ARGS)" fonts/ttf/*.ttf && \
+	python3 scripts/make_webfonts.py fonts && \
 	touch build.stamp
 
 venv/touchfile: requirements.txt
@@ -46,6 +53,11 @@ test: build.stamp
 
 proof: venv build.stamp
 	TOCHECK=$$(find fonts/variable -type f -name "*.ttf" 2>/dev/null); if [ -z "$$TOCHECK" ]; then TOCHECK=$$(find fonts/ttf -type f -name "*.ttf" 2>/dev/null); fi ; . venv/bin/activate; mkdir -p out/ out/proof; diffenator2 proof $$TOCHECK -o out/proof
+
+hinting-test: build.stamp
+	rm -rf out/hinting-test && mkdir -p out/hinting-test/fonts
+	cp scripts/hinting-test.html out/hinting-test/index.html
+	cp fonts/webfonts/*.woff2 out/hinting-test/fonts/
 
 images: venv $(DRAWBOT_OUTPUT)
 

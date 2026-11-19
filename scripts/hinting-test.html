@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scoutie Sans hinting test</title>
+<style>
+  /* Static TTFs, autohinted by the build (scripts/autohint_fonts.py) */
+  @font-face { font-family: "SS Static"; font-weight: 300; font-style: normal; src: url("fonts/ScoutieSans-Light.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 350; font-style: normal; src: url("fonts/ScoutieSans-Book.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 400; font-style: normal; src: url("fonts/ScoutieSans-Regular.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 500; font-style: normal; src: url("fonts/ScoutieSans-Medium.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 300; font-style: italic; src: url("fonts/ScoutieSans-LightItalic.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 350; font-style: italic; src: url("fonts/ScoutieSans-BookItalic.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 400; font-style: italic; src: url("fonts/ScoutieSans-Italic.woff2") format("woff2"); }
+  @font-face { font-family: "SS Static"; font-weight: 500; font-style: italic; src: url("fonts/ScoutieSans-MediumItalic.woff2") format("woff2"); }
+  /* Variable fonts, unhinted */
+  @font-face { font-family: "SS Variable"; font-weight: 200 800; font-style: normal; src: url("fonts/ScoutieSans[wght].woff2") format("woff2"); }
+  @font-face { font-family: "SS Variable"; font-weight: 200 800; font-style: italic; src: url("fonts/ScoutieSans-Italic[wght].woff2") format("woff2"); }
+
+  :root { color-scheme: light; }
+  body { margin: 0; padding: 24px 16px 48px; background: #fff; color: #111;
+         font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .env { color: #555; margin: 0 0 16px; }
+  .env b { color: #111; }
+  .warn { background: #fff4d6; border: 1px solid #e8c766; padding: 8px 12px; margin: 0 0 16px; display: none; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin: 0 0 20px; }
+  .controls label { display: inline-flex; gap: 6px; align-items: center; }
+  .controls input[type=text] { width: min(420px, 90vw); font: inherit; padding: 4px 6px; }
+  table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  th, td { text-align: left; vertical-align: baseline; padding: 3px 8px; border-bottom: 1px solid #eee;
+           white-space: nowrap; overflow: hidden; }
+  th { font-weight: 600; color: #555; font-size: 12px; }
+  th.size, td.size { width: 44px; color: #777; font-size: 12px; }
+  h2 { font-size: 15px; margin: 28px 0 6px; }
+  .sample { color: #000; }
+  body.dark { background: #000; color: #eee; }
+  body.dark .sample { color: #fff; }
+  body.dark th, body.dark .env, body.dark td.size { color: #aaa; }
+  body.dark th, body.dark td { border-color: #333; }
+  .static { font-family: "SS Static", monospace; }
+  .variable { font-family: "SS Variable", monospace; }
+  .para { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .para p { margin: 0; white-space: normal; }
+  @media (max-width: 700px) { .para { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1>Scoutie Sans hinting test</h1>
+<p class="env" id="env"></p>
+<p class="warn" id="warn">Display scaling isn't 100%, so this isn't a low-DPI test. On Windows, set Display &rarr; Scale to 100% and browser zoom to 100%.</p>
+
+<div class="controls">
+  <label>Text <input type="text" id="text" value="Hamburgefonstiv HOxn 2058 Quick brown fox"></label>
+  <label><input type="checkbox" id="italic"> Italic</label>
+  <label><input type="checkbox" id="dark"> White on black</label>
+</div>
+
+<div id="tables"></div>
+
+<h2>UI paragraph, 13px</h2>
+<div class="para">
+  <p class="sample static" style="font-size:13px;font-weight:400"><b style="font-weight:500">Static (hinted)</b><br>Your conversation with Jordan was assigned to the Billing team. Replies sent from this inbox will use the Support signature until you change it in Settings.</p>
+  <p class="sample variable" style="font-size:13px;font-weight:400"><b style="font-weight:500">Variable (unhinted)</b><br>Your conversation with Jordan was assigned to the Billing team. Replies sent from this inbox will use the Support signature until you change it in Settings.</p>
+</div>
+
+<script>
+  const WEIGHTS = [[300, "Light"], [350, "Book"], [400, "Regular"], [500, "Medium"]];
+  const SIZES = [10, 11, 12, 13, 14, 15, 16];
+  const tables = document.getElementById("tables");
+
+  function render() {
+    const text = document.getElementById("text").value;
+    const style = document.getElementById("italic").checked ? "italic" : "normal";
+    tables.innerHTML = "";
+    for (const [w, label] of WEIGHTS) {
+      const h = document.createElement("h2");
+      h.textContent = `${label} ${w}${style === "italic" ? " Italic" : ""}`;
+      tables.appendChild(h);
+      const t = document.createElement("table");
+      t.innerHTML = '<tr><th class="size">px</th><th>Static woff2 (hinted)</th><th>Variable woff2 (unhinted)</th></tr>';
+      for (const s of SIZES) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td class="size">${s}</td>`;
+        for (const cls of ["static", "variable"]) {
+          const td = document.createElement("td");
+          td.className = `sample ${cls}`;
+          td.style.cssText = `font-size:${s}px;font-weight:${w};font-style:${style}`;
+          td.textContent = text;
+          tr.appendChild(td);
+        }
+        t.appendChild(tr);
+      }
+      tables.appendChild(t);
+    }
+  }
+
+  document.getElementById("text").addEventListener("input", render);
+  document.getElementById("italic").addEventListener("change", render);
+  document.getElementById("dark").addEventListener("change", e =>
+    document.body.classList.toggle("dark", e.target.checked));
+
+  const dpr = window.devicePixelRatio;
+  document.getElementById("env").innerHTML =
+    `devicePixelRatio <b>${dpr}</b> &middot; ${navigator.userAgent.replace(/</g, "&lt;")}`;
+  if (dpr !== 1) document.getElementById("warn").style.display = "block";
+  render();
+</script>
+</body>
+</html>

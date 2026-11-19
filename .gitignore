@@ -3,6 +3,7 @@ venv
 venv-test
 build.stamp
 proof
+out/hinting-test
 fonts
 node_modules
 package-lock.json
