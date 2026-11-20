@@ -10,8 +10,16 @@ DRAWBOT_OUTPUT=$(shell ls documentation/*.py | sed 's/\.py/.png/g')
 #         in GDI and DirectWrite ClearType. DirectWrite (Windows browsers) only
 #         uses vertical hints, so this makes crossbars and horizontal strokes
 #         land on single pixel rows instead of a dark row plus a faint one.
-# Override per build (-B forces a rebuild): make -B build TTFA_ARGS="-x 0 -a qsq"
+# Not used: -X 6-60 (no x-height snapping). It brings hinted heights closer to
+#   the design (x-height snapping makes caps 8% short at 14px and text 7-9% tall
+#   at 16-20px), but in Medium-ExtraBold it closes counters and apertures at
+#   many sizes (e, a, g, s, S, 3, 6, oe/ae), so legibility got worse.
+# Override per build: make build TTFA_ARGS="-x 0 -a qsq"
 TTFA_ARGS ?= -x 0 -a qss
+
+# Per-font ttfautohint control files (sources/ttfautohint/<font name>.ctrl),
+# for fixes that only some weights need, e.g. the bold i/j dot at 13-14px.
+TTFA_CTRL = $(wildcard sources/ttfautohint/*.ctrl)
 
 help:
 	@echo "###"
@@ -32,13 +40,13 @@ venv: venv/touchfile
 customize: venv
 	. venv/bin/activate; python3 scripts/customize.py
 
-build.stamp: venv sources/config.yaml $(SOURCES) scripts/fix_fonts.py scripts/autohint_fonts.py scripts/make_webfonts.py
+build.stamp: venv Makefile sources/config.yaml $(SOURCES) $(TTFA_CTRL) scripts/fix_fonts.py scripts/autohint_fonts.py scripts/make_webfonts.py
 	rm -rf fonts
 	(for config in sources/config*.yaml; do . venv/bin/activate; gftools builder $$config; done) && \
 	. venv/bin/activate; find fonts -name "*.ttf" | xargs python3 scripts/fix_fonts.py && \
 	{ [ -f "fonts/variable/Scoutie-Sans[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans[wght].ttf" "fonts/variable/ScoutieSans[wght].ttf" || true; } && \
 	{ [ -f "fonts/variable/Scoutie-Sans-Italic[wght].ttf" ] && mv "fonts/variable/Scoutie-Sans-Italic[wght].ttf" "fonts/variable/ScoutieSans-Italic[wght].ttf" || true; } && \
-	python3 scripts/autohint_fonts.py --args "$(TTFA_ARGS)" fonts/ttf/*.ttf && \
+	python3 scripts/autohint_fonts.py --args "$(TTFA_ARGS)" --ctrl-dir sources/ttfautohint fonts/ttf/*.ttf && \
 	python3 scripts/make_webfonts.py fonts && \
 	touch build.stamp
 

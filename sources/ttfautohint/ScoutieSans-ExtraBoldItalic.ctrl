@@ -1,0 +1,10 @@
+# ttfautohint control instructions for this font only (see
+# scripts/autohint_fonts.py --ctrl-dir). Windows rendering only; macOS ignores
+# hinting.
+#
+# i, j: the dot-to-stem gap is about 1px at 13-14px in the bold weights, so the
+# hinted dot merges into the stem (i reads as l). Lift the dot (points 0-3, the
+# first contour in both glyphs) one pixel at those sizes. ij is built from i and
+# j, so it follows. Re-check the point numbers and sizes if i or j changes.
+i touch 0-3 yshift 1 @ 13, 14
+j touch 0-3 yshift 1 @ 13, 14
