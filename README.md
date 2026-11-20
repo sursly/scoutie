@@ -37,6 +37,12 @@ The proof files and QA test results are available via GitHub Pages at [sursly.gi
 
 ## Changelog
 
+**20 November 2026. Version 1.006**
+- Easier to tell i from l at small sizes: widened the gap between the dot and the stem of i and j in the lighter and regular weights. In Bold and ExtraBold, a Windows hinting fix keeps the dot from merging into the stem at 13–14px.
+- Raised the dot accent in the heavier weights so it stays separate from the letter at small sizes (ė, ż, ċ, Ż and others).
+- Redrew the tilde accent (ñ, ã, õ and others), and moved ~ and ≈ down from accent height to sit with the other symbols.
+- Fixed ExtraBold spacing of 0 (including tabular and slashed forms), ¢, ¤, <, > and %, which sat off-center.
+
 **19 November 2026. Version 1.005**
 - Added a Book weight (350) with a matching Book Italic, as static fonts and as a named instance in both variable fonts.
 - Sharper text at small sizes on low-resolution screens: the static fonts are autohinted so the x-height keeps its designed proportions, and horizontal strokes snap to whole pixels on Windows.
